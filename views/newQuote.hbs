@@ -1,0 +1,27 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<form method="POST" action="/admin/saveQuote">
+
+    {{#if failure}}
+        <h1>Failed.</h1>
+    {{/if}}
+
+    <input type="text" name="username" placeholder="username" value="{{username}}">
+    <input type="password" name="password" value="{{password}}">
+    <input type="text" name="author" placeholder="author" value="{{author}}">
+    <input type="text" name="quote" placeholder="quote" id="quote" style="width: 425px;">
+    <input type="text" name="url" placeholder="url">
+    
+
+    <button name="submit" type="submit">Submit</button>
+    {{!-- <div id="clearQuote" style="padding: 1rem; background-color: #339966; color: color;">Clear Quote</div> --}}
+
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('#clearQuote').click(function(){
+        $('#quote').val("");
+    });
+</script>

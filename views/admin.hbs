@@ -1,0 +1,15 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<form method="POST" action="/admin/tweet">
+
+    {{#if failure}}
+        <h1>Failed.</h1>
+    {{/if}}
+
+    <input type="text" name="username" placeholder="username" value="{{username}}">
+    <input type="password" name="password" value="{{password}}">
+    
+    <button name="submit" type="submit">Tweet</button>
+
+</form>

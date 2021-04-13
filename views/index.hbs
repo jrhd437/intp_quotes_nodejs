@@ -1,0 +1,85 @@
+<div class="row" id="app">
+    <div class="col-12 col-md-8 mb-4">
+        <h1>INTP Quotes</h1>
+        <p>
+            INTP Quotes is a Twitter bot that tweets quotes from famous people who are thought to be, or have been,
+            INTP.
+        </p>
+
+        <div class="alert alert-primary my-4">
+            <h5>Here's a random quote for you:</h5>
+            <blockquote v-html="quote">
+                {{{ tweet }}}
+            </blockquote>
+            <button id="newQuote" class="btn btn-primary" v-on:click="fetch_quote">New Quote</button>
+        </div>
+
+        <h3>The Origin Story</h3>
+        <p>
+            In the early 2010s I was just beginnint to learn about personality thoery and found the MBTI very insightful.
+            Amid so much surface material, I wanted to get to the fundamental nature of each type.
+            I began to research notable people of each type - especially my type (INTP).
+            I found that quotes, regardless of subject, was key in understanding the way a person thought.
+        </p>
+        <p>
+            Additionally, I frequently found the quotes relatable and inspiring.
+            Personality theory is model of understanding, and MBTI has enough variation to be helpfully accurate,
+            while no so much that it makes learning difficult.
+        </p>
+        <p>
+            I hope this site, and the Twitter bot are useful for you and that you begin to see through
+            the surface reflection to the deeper fundamentals of each type.
+        </p>
+        <p>
+            Sincerely,<br>
+            INTP Quotes
+        </p>
+        <a target="_blank" href="https://twitter.com/INTP_Quotes" class="btn btn-primary btn-block">Visit INTP_Quotes On
+            Twitter</a>
+
+    </div>
+    <div class="col-12 col-md-4">
+        <h5>INTP Merch!</h5>
+        <div class="row">
+            <div class="col-6">
+                <img src="/images/560.jpg" class="img-fluid">
+            </div>
+            <div class="col-6">
+                <img src="/images/561.jpg" class="img-fluid">
+            </div>
+        </div>
+
+        <p>
+            INTP tees, jackets, phone cases, and more. Multiple designs available.
+        </p>
+        <a target="_blank" href="https://teespring.com/stores/big-bore-media" class="btn btn-block btn-info">View Merch</a>
+    </div>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            quote: ''
+        },
+        methods: {
+            fetch_quote: function () {
+                let self = this;
+                fetch('/json/quote')
+                    .then(function (response) {
+                        return response.json()
+                    })
+                    .then(function (data) {
+                        self.quote = data
+                    })
+                    .catch(function (err) {
+                        console.log(err)
+                    });
+            },
+        },
+        mounted: function () {
+            let self = this;
+            self.fetch_quote();
+        }
+    })
+</script>
